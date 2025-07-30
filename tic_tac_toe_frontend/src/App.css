@@ -1,104 +1,313 @@
-/* CSS Variables for Theme Management */
-:root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+/* Theme variables: dark by default */
+:root, [data-theme='dark'] {
+  --ttt-bg: #1a1a1a;
+  --ttt-card: #282c34;
+  --ttt-primary: #1e88e5;
+  --ttt-secondary: #42a5f5;
+  --ttt-accent: #ff5252;
+  --ttt-border: #404040;
+  --ttt-text: #fff;
+  --ttt-text-secondary: rgba(255,255,255,0.7);
+  --ttt-status-bg: rgba(66,165,245,0.08);
+  --ttt-btn-bg: #232c38;
+  --ttt-btn-hover: #1e2a38;
+  --ttt-fz: 2.7vw;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+/* Light theme (can be toggled for demo) */
+[data-theme='light'] {
+  --ttt-bg: #fff;
+  --ttt-card: #f1f4fa;
+  --ttt-primary: #1e88e5;
+  --ttt-secondary: #1976d2;
+  --ttt-accent: #ff5252;
+  --ttt-border: #b0b8c6;
+  --ttt-text: #222;
+  --ttt-text-secondary: #5d6470;
+  --ttt-status-bg: #e3f2fd;
+  --ttt-btn-bg: #e7eaee;
+  --ttt-btn-hover: #dde2ea;
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+body, .App, .ttt-root {
+  background: var(--ttt-bg);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--ttt-text);
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ttt-menu-bar {
+  background: var(--ttt-card);
+  color: var(--ttt-text);
+  border-bottom: 1px solid var(--ttt-border);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7em 2.3vw;
+  font-size: 1.06rem;
+  letter-spacing: 1.2px;
+  z-index: 2;
+  height: 54px;
+  box-shadow: 0 2px 8px 0 rgba(30,136,229,0.07);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ttt-logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Segoe UI',sans-serif;
+  font-weight: 700;
+  color: var(--ttt-primary);
+  font-size: 1.14em;
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+.ttt-theme-btn {
+  border: none;
+  background: transparent;
+  color: var(--ttt-accent);
+  font-size: 1.38em;
+  cursor: pointer;
+  margin-left: 1em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.ttt-theme-btn:hover { background: rgba(255,82,82,0.13);}
+
+.ttt-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  justify-content: flex-start;
+  min-height: 72vh;
+  margin-top: 0.3em;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.ttt-controls {
+  margin: 1.2em 0 0.6em 0;
+  background: var(--ttt-card);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px 0 rgba(30,136,229,0.07);
+  padding: 1.18em 2.7em 1.1em 2.7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+.ttt-modes {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-bottom: 0.38em;
+}
+
+.ttt-mode-btn {
+  font-size: 1em;
+  padding: 6px 29px;
+  border-radius: 7px;
+  border: 2px solid var(--ttt-border);
+  outline: none;
+  background: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  margin-right: 2px;
+  transition: all 0.14s;
+}
+.ttt-mode-btn:active {
+  background: var(--ttt-btn-hover);
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.ttt-scoreboard {
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+  margin-bottom: 0.8em;
+  margin-top: 0.1em;
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.ttt-score-box {
+  border: 2px solid var(--ttt-border);
+  border-radius: 9px;
+  padding: 5px 19px;
+  min-width: 60px;
+  background: var(--ttt-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1em;
+  font-weight: 600;
+  transition: border-color 0.19s, color 0.12s;
+}
+.ttt-score-label {
+  font-size: 1em;
+  margin-bottom: 2px;
+}
+.ttt-score {
+  font-size: 1.15em;
+  font-weight: 700;
+  margin-bottom: 1px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.ttt-symbol-choice {
+  margin-top: 0.3em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
+.ttt-label {
+  color: var(--ttt-text-secondary);
+  font-weight: 470;
+}
+
+.ttt-symbol-btn {
+  font-size: 1em;
+  padding: 5px 18px;
+  margin-right: 5px;
+  border-radius: 7px;
+  border: 2px solid var(--ttt-border);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.18s;
+  outline: none;
+}
+.ttt-symbol-btn[aria-pressed="true"],
+.ttt-symbol-btn:active {
+  border-color: var(--ttt-accent);
+  background: rgba(255,82,82,0.12);
+}
+.ttt-symbol-btn:disabled { cursor: not-allowed; opacity: 0.5; }
+
+.ttt-board-section {
+  margin: 1.64em 0 0 0;
+  background: var(--ttt-card);
+  border-radius: 21px;
+  box-shadow: 0 4px 32px 0 #00000011;
+  padding: 2.1em 2.9em 1.29em 2.9em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(46px, 1fr));
+  grid-template-rows: repeat(3, minmax(46px, 1fr));
+  gap: 0.22em;
+  min-width: 231px;
+  max-width: 390px;
+  min-height: 231px;
+  margin: 0.21em 0 0.73em 0;
+}
+
+.ttt-square {
+  width: 70px;
+  height: 70px;
+  font-size: var(--ttt-fz);
+  color: var(--ttt-text);
+  background: transparent;
+  border: 2.2px solid var(--ttt-border);
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.14s, background 0.22s;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+.ttt-square:focus,
+.ttt-square:active {
+  background: rgba(66,165,245,0.07);
+  border-color: var(--ttt-primary);
+}
+
+.ttt-status {
+  font-size: 1.15em;
+  color: var(--ttt-accent);
+  font-weight: 650;
+  margin-top: 0.94em;
+  margin-bottom: 0.38em;
+  min-height: 1.5em;
+  background: var(--ttt-status-bg);
+  border-radius: 6px;
+  padding: 5px 19px;
+}
+
+.ttt-btn-row {
+  display: flex;
+  flex-direction: row;
+  gap: 17px;
+  margin-top: 0.8em;
+}
+
+.ttt-btn {
+  color: var(--ttt-text);
+  border: none;
+  background: var(--ttt-btn-bg);
+  padding: 8px 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 620;
+  transition: background 0.19s;
+}
+.ttt-btn:active {
+  background: var(--ttt-btn-hover);
+}
+.ttt-btn:disabled { opacity: 0.55; cursor: not-allowed;}
+
+.ttt-footer {
+  margin: 2.65em 0 1.0em 0;
+  color: var(--ttt-text-secondary);
+  font-size: 0.99em;
+  padding: 3px 0 0 0;
+  text-align: center;
+}
+.ttt-footer a {
+  color: var(--ttt-primary);
+  text-decoration: none;
+}
+
+/* Responsiveness for tablet/mobile */
+@media (max-width: 1020px) {
+  .ttt-controls, .ttt-board-section {
+    padding-left: 1.15em;
+    padding-right: 1.15em;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media (max-width: 640px) {
+  .ttt-controls, .ttt-board-section {
+    padding-left: 0.55em;
+    padding-right: 0.55em;
+  }
+  .ttt-board {
+    min-width: 156px;
+    max-width: 98vw;
+  }
+  .ttt-square {
+    width: 19vw;
+    height: 19vw;
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+@media (max-width: 420px) {
+  .ttt-menu-bar {
+    font-size: 0.97em;
+    padding: 0.7em 1vw;
+  }
+  .ttt-score-box {
+    padding: 5px 5vw;
+    min-width: 0px;
+  }
+  .ttt-board-section {
+    padding: 0.59em 0.2em;
   }
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
-}
+/* Remove scroll padding at the top due to menu bar */
+html { scroll-padding-top: 67px;}
